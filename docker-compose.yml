@@ -1,0 +1,31 @@
+version: '2'
+services:
+ 
+ wp_samid:
+  container_name: wp_samid
+  build : ./wp/
+  restart: unless-stopped
+  hostname: wp_samid
+  environment:
+   WORDPRESS_DB_USER: root
+   WORDPRESS_DB_PASSWORD: diemas040492
+   WORDPRESS_DB_NAME: samid
+  ports: 
+   - "127.0.0.1:8085:80"
+   - "127.0.0.1:8086:443" #buka port ini jika ini menggunakan https
+  links:
+   - db_samid:mysql
+  volumes:
+   - /var/www/html/ori/wp/:/var/www/html
+ db_samid:
+  container_name: db_samid
+  build: ./db/
+  restart: unless-stopped
+  hostname: db_samid
+  volumes:
+   - /var/www/html/ori/db_live:/var/lib/mysql
+
+#volumes:
+ # samid_wp_volume:
+  #samid_db_volume:
+
