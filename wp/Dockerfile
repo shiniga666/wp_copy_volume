@@ -2,7 +2,9 @@ FROM wordpress:latest
 COPY . /var/www/html
 
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
+    	apt-utils \
+	vim \
+	libfreetype6-dev \
         libmcrypt-dev \
         libpng-dev \
         libjpeg-dev \
